@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<style>
+  body{
+    margin:0;
+    height:100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+  }
+  .neon{
+    position: relative;
+    overflow: hidden;
+    filter: brightness(200%);/*调节亮度*/
+  }
+  .text{
+    background-color: black;
+    color: white;
+    font-size:180px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    user-select: none;
+  }
+  /*用伪元素和数据属性增加文字，产生描边效果：*/
+  .text::before{
+    content:attr(data-text); /*attr(attr-name)ie8及以上支持*/
+    position:absolute;
+    color:white;
+    filter:blur(0.02em);
+    mix-blend-mode: difference;/*用混色模式产生描边效果,该属性的作用是将一个元素同其父标签的元素发生混合：*/
+/*    mix-blend-mode: normal;          //正常
+  mix-blend-mode: multiply;        //正片叠底
+  mix-blend-mode: screen;          //滤色
+  mix-blend-mode: overlay;         //叠加
+  mix-blend-mode: darken;          //变暗
+  mix-blend-mode: lighten;         //变亮
+  mix-blend-mode: color-dodge;     //颜色减淡
+  mix-blend-mode: color-burn;      //颜色加深
+  mix-blend-mode: hard-light;      //强光
+  mix-blend-mode: soft-light;      //柔光
+  mix-blend-mode: difference;      //差值
+  mix-blend-mode: exclusion;       //排除
+  mix-blend-mode: hue;             //色相
+  mix-blend-mode: saturation;      //饱和度
+  mix-blend-mode: color;           //颜色
+  mix-blend-mode: luminosity;      //亮度
+  mix-blend-mode: initial;         //初始
+  mix-blend-mode: inherit;         //继承
+  mix-blend-mode: unset;           //复原*/
+  }
+  /*设置渐变色背景*/
+  .gradient{
+    position: absolute;
+    background: linear-gradient(45deg, red, gold, lightgreen, gold, red);
+    left:0;
+    top:0;
+    bottom: 0;
+    right:0;
+    mix-blend-mode: multiply; /*用混色模式把背景作用到文字上*/
+  }
+  /*用径向渐变制作光影背景：*/
+  .spotlight{
+    position: absolute;
+    top:-100%;
+    left:-100%;
+    bottom: 0;
+    right:0;
+    background: radial-gradient(circle,white,transparent 25%)center/25% 25%,radial-gradient(circle,white,black 25%)center/12.5% 12.5%;
+     mix-blend-mode: color-dodge;
+    animation: light 5s linear infinite;
+  }
+  @keyframes light {
+    to {
+        transform: translate(50%, 50%);
+    }
+  }
+</style>
+<body>
+  <div class="neon">
+    <span class="text" data-text='thanks'>thanks</span>
+    <span class="gradient"></span>
+    <span class="spotlight"></span>
+  </div>
+</body>
+</html>

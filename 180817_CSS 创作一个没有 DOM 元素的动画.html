@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> </title>
+</head>
+<style>
+  body{/*设置页面空间：*/
+    position: fixed;
+    margin:0;
+    width:100vw;
+    height:100vw;
+  }
+  /*用伪元素设置背景图案：*/
+  body::before {
+    content: '';
+    position: fixed;
+    width: 200vmax;
+    height: 200vmax;/*相对于视口的宽度或高度中较大的那个。其中最大的那个被均分为100单位的vmax[ie11以下不兼容]*/
+    background-color: steelblue;
+    color: turquoise;
+    background-image: /*currentColor是 color 属性的值，具体意思是指：currentColor关键字的使用值是 color 属性值的计算值。*/
+        linear-gradient(
+            45deg, 
+            currentColor 25%, 
+            transparent 25%, transparent 75%, 
+            currentColor 75%),
+        linear-gradient(
+            45deg, 
+            currentColor 25%, 
+            transparent 25%, transparent 75%, 
+            currentColor 75%);
+    background-position: 0 0, 5vmax 5vmax;
+    background-size: 10vmax 10vmax;
+  }
+@keyframes move {
+    from {
+        left: -40%;
+        top: -40%;
+    }
+
+    to {
+        left: -60%;
+        top: -60%;
+    }
+}
+
+</style>
+<body>
+  
+</body>
+</html>
